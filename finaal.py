@@ -19,7 +19,26 @@ def draw_grid():
 def draw_tile(x, y, number):
     t.penup()
     t.goto(x + CELL_SIZE/2, y - CELL_SIZE/2)
-    t.fillcolor("orange")
+
+    color_mapping = {
+        2: "yellow",
+        4: "green",
+        8: "red",
+        16: "blue",
+        32: "purple",
+        64: "orange",
+        128: "pink",
+        256: "brown",
+        512: "grey",
+        1024: "white",
+        2048: "dark green"
+    }
+
+    if number in color_mapping:
+        t.fillcolor(color_mapping[number])
+    else:
+        t.fillcolor("orange")  
+
     t.begin_fill()
     t.setheading(45)
     t.circle(CELL_SIZE * 0.3, steps=4) 
@@ -27,7 +46,9 @@ def draw_tile(x, y, number):
     t.pendown()
     t.goto(t.xcor() - CELL_SIZE*0.15, t.ycor())
     if number != 0:
+        t.color("black")  
         t.write(number, align="center", font=("Arial", 24, "bold"))
+
 
 
 
